@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/viewmodel/home_view_model.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/viewmodel/pokemon_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_details.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_stats.dart';
+import 'package:provider/provider.dart';
 
 class PokemonInfoCard extends StatelessWidget {
-  const PokemonInfoCard(
-      {super.key, required this.pokemon, required this.homeViewModel});
+  const PokemonInfoCard({super.key, required this.pokemon});
 
-  final HomeViewModel homeViewModel;
   final Pokemon pokemon;
 
   @override
   Widget build(BuildContext context) {
+    var homeViewModel = context.watch<PokemonModel>();
+
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(

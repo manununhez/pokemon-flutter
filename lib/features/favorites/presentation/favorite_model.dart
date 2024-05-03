@@ -1,10 +1,10 @@
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/get_favorites_usecase.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/remove_favorite_usecase.dart';
-import 'package:pokemon_flutter/features/core/presentation/base_view_model.dart';
+import 'package:pokemon_flutter/features/core/presentation/base_model.dart';
 import 'package:pokemon_flutter/features/core/di/locator.dart';
 
-class FavoriteViewModel extends BaseViewModel {
+class FavoriteModel extends BaseModel {
   GetFavoritesUseCase getFavoriteUseCase = locator<GetFavoritesUseCase>();
   RemoveFavoriteUseCase removeFavoriteUseCase =
       locator<RemoveFavoriteUseCase>();
@@ -14,6 +14,7 @@ class FavoriteViewModel extends BaseViewModel {
   Future removeFromFavorite(Pokemon pokemon) async {
     setState(ViewState.busy);
     await removeFavoriteUseCase.execute(pokemon);
+    getFavorites();
     setState(ViewState.idle);
   }
 
