@@ -37,29 +37,50 @@ class SpritesEntry {
   String? frontFemale;
   String? frontShiny;
   String? frontShinyFemale;
+  SpritesOtherEntry? other;
 
-  SpritesEntry({
-    required this.backDefault,
-    required this.backFemale,
-    required this.backShiny,
-    required this.backShinyFemale,
-    required this.frontDefault,
-    required this.frontFemale,
-    required this.frontShiny,
-    required this.frontShinyFemale,
-  });
+  SpritesEntry(
+      {required this.backDefault,
+      required this.backFemale,
+      required this.backShiny,
+      required this.backShinyFemale,
+      required this.frontDefault,
+      required this.frontFemale,
+      required this.frontShiny,
+      required this.frontShinyFemale,
+      required this.other});
 
   factory SpritesEntry.fromJson(Map<String, dynamic> json) {
     return SpritesEntry(
-      backDefault: json['back_default'],
-      backFemale: json['back_female'],
-      backShiny: json['back_shiny'],
-      backShinyFemale: json['back_shiny_female'],
-      frontDefault: json['front_default'],
-      frontFemale: json['front_female'],
-      frontShiny: json['front_shiny'],
-      frontShinyFemale: json['front_shiny_female'],
-    );
+        backDefault: json['back_default'],
+        backFemale: json['back_female'],
+        backShiny: json['back_shiny'],
+        backShinyFemale: json['back_shiny_female'],
+        frontDefault: json['front_default'],
+        frontFemale: json['front_female'],
+        frontShiny: json['front_shiny'],
+        frontShinyFemale: json['front_shiny_female'],
+        other: SpritesOtherEntry.fromJson(json['other']));
+  }
+}
+
+class SpritesOtherEntry {
+  SpriteHomeEntry? home;
+
+  SpritesOtherEntry({required this.home});
+
+  factory SpritesOtherEntry.fromJson(Map<String, dynamic> json) {
+    return SpritesOtherEntry(home: SpriteHomeEntry.fromJson(json['home']));
+  }
+}
+
+class SpriteHomeEntry {
+  String? frontDefault;
+
+  SpriteHomeEntry({required this.frontDefault});
+
+  factory SpriteHomeEntry.fromJson(Map<String, dynamic> json) {
+    return SpriteHomeEntry(frontDefault: json['front_default']);
   }
 }
 

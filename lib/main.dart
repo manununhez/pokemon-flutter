@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/home_screen.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/home_view_model.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/viewmodel/home_view_model.dart';
 import 'package:pokemon_flutter/features/core/di/locator.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   setupLocator();
-  runApp(const MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  //Only portrait mode
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,13 +23,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => HomeViewModel()..getPokemon("1"),
       child: const MaterialApp(
-        home: Scaffold(
-          // appBar: AppBar(
-          //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          //   title: const Text("Title"),
-          // ),
-          body: HomeScreen(),
-        ),
+        home: HomeScreen(),
       ),
     );
   }

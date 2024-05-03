@@ -6,7 +6,7 @@ extension PokemonDTOExtension on PokemonDTO {
     return Pokemon(
       id: id.toString(),
       name: name ?? '',
-      image: sprites?.frontDefault ?? '',
+      image: sprites?.other?.home?.frontDefault ?? '',
       stats: _getStats(),
       type: _getType(),
     );
@@ -32,7 +32,7 @@ extension PokemonDTOExtension on PokemonDTO {
     // Considering only the first type of pokemon if there is more than one
     return types != null && types!.isNotEmpty
         ? _mapType(types![0].type.name)
-        : PokemonType.unknown;
+        : PokemonType.empty();
   }
 
   PokemonType _mapType(String? typeName) {

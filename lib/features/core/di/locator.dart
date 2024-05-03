@@ -9,7 +9,8 @@ import 'package:pokemon_flutter/features/favorites/domain/usecase/remove_favorit
 import 'package:pokemon_flutter/features/pokemon/domain/repository/pokemon_repository.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/add_favorite_usecase.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/get_pokemon_usecase.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/home_view_model.dart';
+import 'package:pokemon_flutter/features/pokemon/domain/usecases/is_favorite_usecase.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/viewmodel/home_view_model.dart';
 
 var locator = GetIt.instance;
 
@@ -24,4 +25,5 @@ void setupLocator() {
   locator.registerFactory(() => AddFavoriteUseCase());
   locator.registerFactory(() => GetFavoritesUseCase());
   locator.registerFactory(() => RemoveFavoriteUseCase());
+  locator.registerFactory(() => IsFavoriteUseCase());
 }

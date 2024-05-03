@@ -20,4 +20,14 @@ class PokemonRepositoryImpl implements PokemonRepository {
   Future<void> saveFavoritePokemon(Pokemon pokemon) async {
     localDataSource.saveFavoritePokemon(pokemon);
   }
+
+  @override
+  Future<void> removeFavoritePokemon(Pokemon pokemon) async {
+    localDataSource.removeFavoritePokemon(pokemon.id);
+  }
+
+  @override
+  Future<bool> isFavoritePokemon(String pokemonId) async {
+    return localDataSource.isFavoritePokemon(pokemonId);
+  }
 }

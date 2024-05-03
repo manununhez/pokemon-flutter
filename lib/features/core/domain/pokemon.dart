@@ -16,12 +16,11 @@ class Pokemon {
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
     return Pokemon(
-      id: json['id'],
-      name: json['name'],
-      image: json['image'],
-      stats: PokemonStats.fromJson(json['stats']),
-      type: PokemonTypeMapper.fromString(json['type']),
-    );
+        id: json['id'],
+        name: json['name'],
+        image: json['image'],
+        stats: PokemonStats.fromJson(json['stats']),
+        type: PokemonType.fromJson(json['type']));
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +29,7 @@ class Pokemon {
       'name': name,
       'image': image,
       'stats': stats.toJson(),
-      'type': PokemonTypeMapper.toStringValue(type),
+      'type': type.toJson()
     };
   }
 }
@@ -45,6 +44,10 @@ class PokemonStats {
     required this.hp,
     required this.defense,
   });
+
+  static PokemonStats empty() {
+    return PokemonStats(hp: '', attack: '', defense: '');
+  }
 
   factory PokemonStats.fromJson(Map<String, dynamic> json) {
     return PokemonStats(
@@ -63,7 +66,29 @@ class PokemonStats {
   }
 }
 
-enum PokemonType {
+class PokemonType {
+  Color backgroundColor;
+  PType type;
+
+  PokemonType({required this.backgroundColor, required this.type});
+
+  static PokemonType empty() {
+    return PokemonType(backgroundColor: Colors.white, type: PType.unknown);
+  }
+
+  factory PokemonType.fromJson(Map<String, dynamic> json) {
+    return PokemonTypeMapper.fromString(json['type']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'backgroundColor': PokemonTypeMapper.getColorType(backgroundColor),
+      'type': PokemonTypeMapper.toStringValue(type)
+    };
+  }
+}
+
+enum PType {
   normal,
   fighting,
   flying,
@@ -87,103 +112,138 @@ enum PokemonType {
 }
 
 class PokemonTypeMapper {
-  static const Map<String, PokemonType> _stringToEnum = {
-    "normal": PokemonType.normal,
-    "fighting": PokemonType.fighting,
-    "flying": PokemonType.flying,
-    "poison": PokemonType.poison,
-    "ground": PokemonType.ground,
-    "rock": PokemonType.rock,
-    "bug": PokemonType.bug,
-    "ghost": PokemonType.ghost,
-    "steel": PokemonType.steel,
-    "fire": PokemonType.fire,
-    "water": PokemonType.water,
-    "grass": PokemonType.grass,
-    "electric": PokemonType.electric,
-    "psychic": PokemonType.psychic,
-    "ice": PokemonType.ice,
-    "dragon": PokemonType.dragon,
-    "dark": PokemonType.dark,
-    "fairy": PokemonType.fairy,
-    "unknown": PokemonType.unknown,
-    "shadow": PokemonType.shadow,
+  static const Map<String, PType> _stringToType = {
+    "normal": PType.normal,
+    "fighting": PType.fighting,
+    "flying": PType.flying,
+    "poison": PType.poison,
+    "ground": PType.ground,
+    "rock": PType.rock,
+    "bug": PType.bug,
+    "ghost": PType.ghost,
+    "steel": PType.steel,
+    "fire": PType.fire,
+    "water": PType.water,
+    "grass": PType.grass,
+    "electric": PType.electric,
+    "psychic": PType.psychic,
+    "ice": PType.ice,
+    "dragon": PType.dragon,
+    "dark": PType.dark,
+    "fairy": PType.fairy,
+    "unknown": PType.unknown,
+    "shadow": PType.shadow,
   };
 
-  static const Map<PokemonType, String> _enumToString = {
-    PokemonType.normal: "normal",
-    PokemonType.fighting: "fighting",
-    PokemonType.flying: "flying",
-    PokemonType.poison: "poison",
-    PokemonType.ground: "ground",
-    PokemonType.rock: "rock",
-    PokemonType.bug: "bug",
-    PokemonType.ghost: "ghost",
-    PokemonType.steel: "steel",
-    PokemonType.fire: "fire",
-    PokemonType.water: "water",
-    PokemonType.grass: "grass",
-    PokemonType.electric: "electric",
-    PokemonType.psychic: "psychic",
-    PokemonType.ice: "ice",
-    PokemonType.dragon: "dragon",
-    PokemonType.dark: "dark",
-    PokemonType.fairy: "fairy",
-    PokemonType.unknown: "unknown",
-    PokemonType.shadow: "shadow",
+  static const Map<PType, Color> _typeToColor = {
+    PType.normal: Colors.brown,
+    PType.fighting: Colors.red,
+    PType.flying: Colors.blue,
+    PType.poison: Colors.purple,
+    PType.ground: Colors.orange,
+    PType.rock: Colors.grey,
+    PType.bug: Colors.green,
+    PType.ghost: Colors.indigo,
+    PType.steel: Colors.blueGrey,
+    PType.fire: Colors.orange,
+    PType.water: Colors.blue,
+    PType.grass: Colors.green,
+    PType.electric: Colors.yellow,
+    PType.psychic: Colors.pink,
+    PType.ice: Colors.lightBlue,
+    PType.dragon: Colors.deepPurple,
+    PType.dark: Colors.black,
+    PType.fairy: Colors.pinkAccent,
+    PType.unknown: Colors.grey,
+    PType.shadow: Colors.black87,
   };
 
-  static PokemonType fromString(String value) {
-    return _stringToEnum[value.toLowerCase()] ?? PokemonType.unknown;
+  static const Map<PType, String> _typeToString = {
+    PType.normal: "normal",
+    PType.fighting: "fighting",
+    PType.flying: "flying",
+    PType.poison: "poison",
+    PType.ground: "ground",
+    PType.rock: "rock",
+    PType.bug: "bug",
+    PType.ghost: "ghost",
+    PType.steel: "steel",
+    PType.fire: "fire",
+    PType.water: "water",
+    PType.grass: "grass",
+    PType.electric: "electric",
+    PType.psychic: "psychic",
+    PType.ice: "ice",
+    PType.dragon: "dragon",
+    PType.dark: "dark",
+    PType.fairy: "fairy",
+    PType.unknown: "unknown",
+    PType.shadow: "shadow",
+  };
+
+  static String getColorType(Color color) {
+    for (var entry in _typeToColor.entries) {
+      if (entry.value == color) {
+        return _typeToString[entry.key] ?? 'unknown';
+      }
+    }
+    return 'unknown';
   }
 
-  static String toStringValue(PokemonType type) {
-    return _enumToString[type] ?? "unknown";
+  static PokemonType fromString(String value) {
+    var ptype = _stringToType[value.toLowerCase()] ?? PType.unknown;
+
+    return PokemonType(
+        backgroundColor: _typeToColor[ptype] ?? Colors.amber, type: ptype);
+  }
+
+  static String toStringValue(PType type) {
+    return _typeToString[type] ?? "unknown";
   }
 }
 
-extension PokemonTypeExtension on PokemonType {
+extension PokemonTypeExtension on PType {
   Color get color {
     switch (this) {
-      case PokemonType.normal:
+      case PType.normal:
         return Colors.brown;
-      case PokemonType.fighting:
+      case PType.fighting:
         return Colors.red;
-      case PokemonType.flying:
+      case PType.flying:
         return Colors.blue;
-      case PokemonType.poison:
+      case PType.poison:
         return Colors.purple;
-      case PokemonType.ground:
+      case PType.ground:
         return Colors.orange;
-      case PokemonType.rock:
+      case PType.rock:
         return Colors.grey;
-      case PokemonType.bug:
+      case PType.bug:
         return Colors.green;
-      case PokemonType.ghost:
+      case PType.ghost:
         return Colors.indigo;
-      case PokemonType.steel:
+      case PType.steel:
         return Colors.blueGrey;
-      case PokemonType.fire:
+      case PType.fire:
         return Colors.orange;
-      case PokemonType.water:
+      case PType.water:
         return Colors.blue;
-      case PokemonType.grass:
+      case PType.grass:
         return Colors.green;
-      case PokemonType.electric:
+      case PType.electric:
         return Colors.yellow;
-      case PokemonType.psychic:
+      case PType.psychic:
         return Colors.pink;
-      case PokemonType.ice:
+      case PType.ice:
         return Colors.lightBlue;
-      case PokemonType.dragon:
+      case PType.dragon:
         return Colors.deepPurple;
-      case PokemonType.dark:
+      case PType.dark:
         return Colors.black;
-      case PokemonType.fairy:
+      case PType.fairy:
         return Colors.pinkAccent;
-      case PokemonType.unknown:
+      case PType.unknown:
         return Colors.grey;
-      case PokemonType.shadow:
+      case PType.shadow:
         return Colors.black87;
       default:
         return Colors.transparent;
