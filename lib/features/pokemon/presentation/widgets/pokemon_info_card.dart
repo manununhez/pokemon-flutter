@@ -64,7 +64,7 @@ class PokemonInfoCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Color(0xFFA3A3A3))),
+                        border: Border.all(color: const Color(0xFFA3A3A3))),
                     child: Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: Text(
@@ -112,7 +112,7 @@ class ChoosePokemonButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           backgroundColor:
-              isFavorite ? pokemon.type.backgroundColor : Color(0xFF383838),
+              isFavorite ? pokemon.type.backgroundColor : const Color(0xFF383838),
           foregroundColor: Colors.white,
           textStyle: const TextStyle(),
           padding: const EdgeInsets.symmetric(horizontal: 16),

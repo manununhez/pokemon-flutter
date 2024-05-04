@@ -4,7 +4,7 @@ import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
 import 'package:pokemon_flutter/features/favorites/domain/repository/favorite_repository.dart';
 
 class FavoriteRepositoryImpl implements FavoriteRepository {
-  LocalPokemonDataSource localDataSource = locator<LocalPokemonDataSource>();
+  LocalDataSource localDataSource = locator<LocalDataSource>();
 
   @override
   Future<List<Pokemon>> getFavorites() {

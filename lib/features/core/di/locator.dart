@@ -16,9 +16,9 @@ import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_mode
 var locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerSingleton<PokemonService>(HttpRemoteDataSource());
-  locator.registerSingleton<LocalPokemonDataSource>(
-      SharedPreferencesPokemonDataSource());
+  locator.registerSingleton<RemoteDataSource>(HttpRemoteDataSource());
+  locator.registerSingleton<LocalDataSource>(
+      SharedPreferencesDataSource());
   locator.registerSingleton<PokemonRepository>(PokemonRepositoryImpl());
   locator.registerSingleton<FavoriteRepository>(FavoriteRepositoryImpl());
   locator.registerFactory(() => PokemonModel());

@@ -7,8 +7,8 @@ import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/repository/pokemon_repository.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
-  PokemonService remoteDataSource = locator<PokemonService>();
-  LocalPokemonDataSource localDataSource = locator<LocalPokemonDataSource>();
+  RemoteDataSource remoteDataSource = locator<RemoteDataSource>();
+  LocalDataSource localDataSource = locator<LocalDataSource>();
 
   @override
   Future<PokemonList> getPokemonInfo(String offset) async {

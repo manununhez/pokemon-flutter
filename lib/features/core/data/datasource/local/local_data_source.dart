@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class LocalPokemonDataSource {
+abstract class LocalDataSource {
   Future<List<Pokemon>> getFavoritePokemons();
   Future<void> saveFavoritePokemon(Pokemon pokemon);
   Future<void> removeFavoritePokemon(String pokemonId);
   Future<bool> isFavoritePokemon(String pokemonId);
 }
 
-class SharedPreferencesPokemonDataSource implements LocalPokemonDataSource {
+class SharedPreferencesDataSource implements LocalDataSource {
   static const _key = 'favorite_pokemons';
 
   @override

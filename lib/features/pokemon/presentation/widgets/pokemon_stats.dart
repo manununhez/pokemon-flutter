@@ -19,7 +19,7 @@ class PokemonInfoStats extends StatelessWidget {
         Align(
           alignment: const AlignmentDirectional(1, 0),
           child: Container(
-            width: MediaQuery.sizeOf(context).width * 0.18,
+            width: MediaQuery.sizeOf(context).width * 0.19,
             height: 50,
             decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -38,7 +38,7 @@ class PokemonInfoStats extends StatelessWidget {
         Align(
           alignment: const AlignmentDirectional(-1, 0),
           child: Container(
-            width: MediaQuery.sizeOf(context).width * 0.18,
+            width: MediaQuery.sizeOf(context).width * 0.19,
             height: 50,
             decoration: BoxDecoration(
               color: backgroundColor,
