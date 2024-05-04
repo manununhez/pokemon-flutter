@@ -3,6 +3,7 @@ import 'package:pokemon_flutter/features/core/data/datasource/remote/remote_data
 import 'package:pokemon_flutter/features/core/data/mapper/local_to_model.dart';
 import 'package:pokemon_flutter/features/core/di/locator.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/repository/pokemon_repository.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
@@ -10,10 +11,10 @@ class PokemonRepositoryImpl implements PokemonRepository {
   LocalPokemonDataSource localDataSource = locator<LocalPokemonDataSource>();
 
   @override
-  Future<Pokemon> getPokemonInfo(String pokemonId) async {
-    final pokemonDto = await remoteDataSource.getPokemonInfo(pokemonId);
+  Future<PokemonList> getPokemonInfo(String offset) async {
+    final pokemonListDto = await remoteDataSource.getPokemonList(offset);
 
-    return pokemonDto.toPokemon();
+    return pokemonListDto.toPokemonList();
   }
 
   @override

@@ -22,16 +22,16 @@ class PokemonInfoStats extends StatelessWidget {
             width: MediaQuery.sizeOf(context).width * 0.18,
             height: 50,
             decoration: BoxDecoration(
-              color: const Color(0xFFFDFFFD),
-              borderRadius: BorderRadius.circular(8),
-            ),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Color(0xFFA3A3A3))),
             child: Align(
               alignment: const AlignmentDirectional(0, 0),
               child: Text(statValue,
                   style: GoogleFonts.lato(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w900,
-                      textStyle: const TextStyle(color: Color(0xFF383838)))),
+                      textStyle: const TextStyle(color: Color(0xFFA3A3A3)))),
             ),
           ),
         ),
@@ -48,7 +48,7 @@ class PokemonInfoStats extends StatelessWidget {
               alignment: const AlignmentDirectional(0, 0),
               child: Text(statName,
                   style: GoogleFonts.lato(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w900,
                       textStyle: const TextStyle(color: Colors.white))),
             ),

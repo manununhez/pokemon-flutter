@@ -7,4 +7,7 @@ abstract class UrlBuilder {
 class Api {
   static String getPokemonInfo(String pokemonId) =>
       UrlBuilder.buildUrl(endPoint: "/pokemon/$pokemonId/");
+
+  static String getPokemonMetada(String offset, String limit) =>
+      UrlBuilder.buildUrl(endPoint: "/pokemon?offset=$offset&limit=$limit");
 }

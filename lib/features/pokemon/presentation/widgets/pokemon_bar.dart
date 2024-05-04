@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/di/locator.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/favorites/presentation/favorite_model.dart';
+import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/favorites_screen.dart';
 import 'package:provider/provider.dart';
 

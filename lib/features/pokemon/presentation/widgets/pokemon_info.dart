@@ -11,6 +11,7 @@ class PokemonInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 680,
       padding: const EdgeInsets.only(
           top: 20.0, left: 40.0, right: 40.0, bottom: 20.0),
       child: Stack(

@@ -1,5 +1,7 @@
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/core/network/pokemon_dto.dart';
+import 'package:pokemon_flutter/features/core/network/pokemon_list_dto.dart';
 
 extension PokemonDTOExtension on PokemonDTO {
   Pokemon toPokemon() {
@@ -37,5 +39,13 @@ extension PokemonDTOExtension on PokemonDTO {
 
   PokemonType _mapType(String? typeName) {
     return PokemonTypeMapper.fromString(typeName ?? '');
+  }
+}
+
+extension PokemonListDTOExtension on PokemonListDTO {
+  PokemonList toPokemonList() {
+    return PokemonList(
+        pokemonList: pokemonList.map((e) => e.toPokemon()).toList(),
+        nextOffset: nextOffset);
   }
 }

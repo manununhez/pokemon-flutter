@@ -1,4 +1,5 @@
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/remove_favorite_usecase.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/add_favorite_usecase.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/get_pokemon_usecase.dart';
@@ -13,13 +14,18 @@ class PokemonModel extends BaseModel {
   RemoveFavoriteUseCase removeFavoriteUseCase =
       locator<RemoveFavoriteUseCase>();
 
-  List<Pokemon> pokemons = [];
+  PokemonList pokemons = PokemonList.empty();
   bool isFavoritePokemon = false;
 
-  Future getPokemon(String pokemonId) async {
+  Future getPokemon() async {
     setState(ViewState.busy);
-    pokemons.add(await getPokemonUseCase.execute(pokemonId));
-    isFavorite(pokemonId);
+    if (pokemons.nextOffset != null) {
+      var newPokemonList =
+          await getPokemonUseCase.execute(pokemons.nextOffset!);
+      pokemons = PokemonList(
+          pokemonList: pokemons.pokemonList + newPokemonList.pokemonList,
+          nextOffset: newPokemonList.nextOffset);
+    }
     setState(ViewState.idle);
   }
 

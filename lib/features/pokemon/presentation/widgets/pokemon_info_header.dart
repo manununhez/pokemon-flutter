@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_details.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';
 
 class PokemonInfoHeader extends StatelessWidget {
   const PokemonInfoHeader({

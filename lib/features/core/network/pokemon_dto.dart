@@ -1,5 +1,3 @@
-// Replace (de)serialization using jsonSerialization https://bloclibrary.dev/tutorials/flutter-weather/
-
 class PokemonDTO {
   int? id;
   String? name;

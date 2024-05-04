@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/favorites/presentation/favorite_model.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/widgets/favorite_item.dart';
 import 'package:provider/provider.dart';
 
@@ -11,16 +12,23 @@ class FavoritesList extends StatelessWidget {
     final favoriteViewModel = context.watch<FavoriteModel>();
 
     return Center(
-      child: favoriteViewModel.favorites.isEmpty
-          ? const FavoritesEmptyList()
-          : ListView(
-              padding: const EdgeInsets.only(
-                  right: 40.0, left: 40.0, bottom: 20.0, top: 40.0),
-              children: <Widget>[
-                  for (var pokemon in favoriteViewModel.favorites)
-                    FavoritesItem(pokemon: pokemon)
-                ]),
-    );
+        child: favoriteViewModel.favorites.isEmpty
+            ? const FavoritesEmptyList()
+            : Padding(
+                padding: const EdgeInsets.only(
+                    right: 40.0, left: 40.0, bottom: 20.0),
+                child: ListView.separated(
+                  itemCount: favoriteViewModel.favorites.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                        height: 12); // Adjust the height as needed
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    return FavoritesItem(
+                        pokemon: favoriteViewModel.favorites[index]);
+                  },
+                ),
+              ));
   }
 }
 
@@ -36,11 +44,15 @@ class FavoritesEmptyList extends StatelessWidget {
         const SizedBox(height: 36),
         Image.asset('assets/images/empty_favorites.png', height: 250),
         const SizedBox(height: 16),
-        const Text("No hay favoritos! Ve a atraparlos"),
+        Text("No hay favoritos! Ve a atraparlos",
+            style: GoogleFonts.lato(
+                fontSize: 16,
+                fontWeight: FontWeight.w900,
+                textStyle: const TextStyle(color: Color(0xFF383838)))),
         const SizedBox(height: 36),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF383838),
+              backgroundColor: const Color(0xFF383838),
               foregroundColor: Colors.white,
               textStyle: const TextStyle(),
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -50,7 +62,7 @@ class FavoritesEmptyList extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back!'),
+          child: const Text('Go back!'),
         )
       ],
     );

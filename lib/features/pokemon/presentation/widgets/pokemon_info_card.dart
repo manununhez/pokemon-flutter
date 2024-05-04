@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/viewmodel/pokemon_model.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_details.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
+import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_stats.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +15,11 @@ class PokemonInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var homeViewModel = context.watch<PokemonModel>();
 
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Container(
+    return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
         height: 350,
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -63,18 +62,18 @@ class PokemonInfoCard extends StatelessWidget {
                     width: MediaQuery.sizeOf(context).width * 0.18,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFDFFFD),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Color(0xFFA3A3A3))),
                     child: Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: Text(
                           'Type: ${pokemon.type.type.name.capitalize()}',
                           style: GoogleFonts.lato(
-                              fontSize: 10,
+                              fontSize: 12,
                               fontWeight: FontWeight.w900,
                               textStyle:
-                                  const TextStyle(color: Color(0xFF383838)))),
+                                  const TextStyle(color: Color(0xFFA3A3A3)))),
                     ),
                   )),
                 ]),
@@ -90,9 +89,7 @@ class PokemonInfoCard extends StatelessWidget {
                   },
                 ))
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -123,7 +120,11 @@ class ChoosePokemonButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8)),
           )),
       onPressed: onPressed,
-      child: Text(isFavorite ? messageIsFavorite : messageIsNotFavorite),
+      child: Text(isFavorite ? messageIsFavorite : messageIsNotFavorite,
+          style: GoogleFonts.lato(
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+              textStyle: const TextStyle(color: Colors.white))),
     );
   }
 }

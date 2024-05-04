@@ -71,6 +71,7 @@ flutter:
     - assets/icons/favorite_icon.png
     - assets/images/empty_favorites.png
     - assets/icons/delete_icon.png
+    - assets/images/pokemon.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
