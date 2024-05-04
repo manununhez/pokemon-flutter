@@ -6,7 +6,6 @@ abstract class LocalDataSource {
   Future<List<Pokemon>> getFavoritePokemons();
   Future<void> saveFavoritePokemon(Pokemon pokemon);
   Future<void> removeFavoritePokemon(String pokemonId);
-  Future<bool> isFavoritePokemon(String pokemonId);
   Future<Map<String, dynamic>?> getResponse(String offset);
   Future<void> saveResponse(Map<String, dynamic> json, String key);
 }
@@ -47,14 +46,6 @@ class SharedPreferencesDataSource implements LocalDataSource {
     final favoritesJson =
         favorites.map((pokemon) => jsonEncode(pokemon.toJson())).toList();
     prefs.setStringList(favoriteKey, favoritesJson);
-  }
-
-  @override
-  Future<bool> isFavoritePokemon(String pokemonId) async {
-    final favorites = await getFavoritePokemons();
-    final pokemonIds = favorites.map((pokemon) => pokemon.id).toList();
-
-    return pokemonIds.contains(pokemonId);
   }
 
   @override

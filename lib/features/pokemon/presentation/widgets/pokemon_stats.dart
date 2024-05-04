@@ -24,7 +24,7 @@ class PokemonInfoStats extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Color(0xFFA3A3A3))),
+                border: Border.all(color: const Color(0xFFA3A3A3))),
             child: Align(
               alignment: const AlignmentDirectional(0, 0),
               child: Text(statValue,

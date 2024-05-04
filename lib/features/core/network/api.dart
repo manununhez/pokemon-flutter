@@ -1,7 +1,7 @@
 abstract class UrlBuilder {
-  static const String BASE_URL = "https://pokeapi.co/api/v2";
+  static const String baseURL = "https://pokeapi.co/api/v2";
 
-  static String buildUrl({required String endPoint}) => "$BASE_URL$endPoint";
+  static String buildUrl({required String endPoint}) => "$baseURL$endPoint";
 }
 
 class Api {

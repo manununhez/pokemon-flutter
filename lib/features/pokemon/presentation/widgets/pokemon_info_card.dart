@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
+import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_stats.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class PokemonInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var homeViewModel = context.watch<PokemonModel>();
+    var favoriteModel = context.watch<FavoriteModel>();
 
     return Container(
         decoration: BoxDecoration(
@@ -83,9 +83,9 @@ class PokemonInfoCard extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 child: ChoosePokemonButton(
                   pokemon: pokemon,
-                  isFavorite: homeViewModel.isFavoritePokemon,
+                  isFavorite: favoriteModel.isFavorite(pokemon),
                   onPressed: () {
-                    homeViewModel.updateFavorite(pokemon);
+                    favoriteModel.updateFavorite(pokemon);
                   },
                 ))
           ],
@@ -111,8 +111,9 @@ class ChoosePokemonButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isFavorite ? pokemon.type.backgroundColor : const Color(0xFF383838),
+          backgroundColor: isFavorite
+              ? pokemon.type.backgroundColor
+              : const Color(0xFF383838),
           foregroundColor: Colors.white,
           textStyle: const TextStyle(),
           padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -15,4 +15,9 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   Future<void> removeFavoritePokemon(Pokemon pokemon) async {
     localDataSource.removeFavoritePokemon(pokemon.id);
   }
+
+  @override
+  Future<void> saveFavoritePokemon(Pokemon pokemon) async {
+    localDataSource.saveFavoritePokemon(pokemon);
+  }
 }

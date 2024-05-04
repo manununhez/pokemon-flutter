@@ -48,11 +48,11 @@ class HttpRemoteDataSource implements RemoteDataSource {
   }
 
   Future<List<PokemonDTO>> getPokemonInfoList(
-      List<PokemonResult> result) async {
+      List<PokemonResult> pokemonResult) async {
     List<PokemonDTO> pokemonList = [];
-    for (var _result in result) {
-      if (_result.url != null) {
-        var pokemon = await getPokemonInfo(extractPokemonId(_result.url!));
+    for (var result in pokemonResult) {
+      if (result.url != null) {
+        var pokemon = await getPokemonInfo(extractPokemonId(result.url!));
         pokemonList.add(pokemon);
       }
     }

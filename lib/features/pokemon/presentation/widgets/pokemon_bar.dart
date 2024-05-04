@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokemon_flutter/features/core/di/locator.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/favorites_screen.dart';
-import 'package:provider/provider.dart';
 
 class PokemonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PokemonAppBar({
@@ -24,10 +21,7 @@ class PokemonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider(
-                            create: (context) =>
-                                locator<FavoriteModel>()..getFavorites(),
-                            child: const FavoritesScreen())));
+                        builder: (context) => const FavoritesScreen()));
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,

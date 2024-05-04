@@ -47,48 +47,43 @@ class InfinitePageViewState extends State<InfinitePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PokemonModel>(
-      builder: (context, model, _) {
-        if (model.state == ViewState.busy) {
-          return Stack(
-            children: [
-              if (_pages.isNotEmpty)
-                PokemonScreen(pokemon: model.pokemons.pokemonList[_currentPage])
-              else
-                const PokemonEmptyScreen(),
-              const Loading()
-            ],
-          );
-        } else {
-          if (model.pokemons.pokemonList.isNotEmpty) {
-            _pages = _buildPagesWithData(model.pokemons.pokemonList);
-            _pageController = PageController(initialPage: _currentPage);
-          }
-
-          model.isFavorite(model.pokemons.pokemonList[_currentPage].id);
-
-          return PageView.builder(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              // int pageIndex = index % _pages.length;
-              return _pages[_currentPage];
-            },
-            onPageChanged: (index) {
-              if ((model.pokemons.pokemonList.length - 1) == index) {
-                //fetch data on last element
-                model.getPokemon();
-              }
-              // model.isFavorite(model.pokemons.pokemonList[index].id);
-
-              setState(() {
-                _currentPage = index;
-              });
-            },
-          );
+    return Consumer<PokemonModel>(builder: (context, pokemonModel, _) {
+      if (pokemonModel.state == ViewState.busy) {
+        return Stack(
+          children: [
+            if (_pages.isNotEmpty)
+              PokemonScreen(
+                  pokemon: pokemonModel.pokemons.pokemonList[_currentPage])
+            else
+              const PokemonEmptyScreen(),
+            const Loading()
+          ],
+        );
+      } else {
+        if (pokemonModel.pokemons.pokemonList.isNotEmpty) {
+          _pages = _buildPagesWithData(pokemonModel.pokemons.pokemonList);
+          _pageController = PageController(initialPage: _currentPage);
         }
-      },
-    );
+
+        return PageView.builder(
+          controller: _pageController,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return _pages[_currentPage];
+          },
+          onPageChanged: (index) {
+            if ((pokemonModel.pokemons.pokemonList.length - 1) == index) {
+              //fetch data on last element
+              pokemonModel.getPokemon();
+            }
+
+            setState(() {
+              _currentPage = index;
+            });
+          },
+        );
+      }
+    });
   }
 
   List<Widget> _buildPagesWithData(List<Pokemon> data) {
