@@ -7,15 +7,18 @@ abstract class LocalDataSource {
   Future<void> saveFavoritePokemon(Pokemon pokemon);
   Future<void> removeFavoritePokemon(String pokemonId);
   Future<bool> isFavoritePokemon(String pokemonId);
+  Future<Map<String, dynamic>?> getResponse(String offset);
+  Future<void> saveResponse(Map<String, dynamic> json, String key);
 }
 
 class SharedPreferencesDataSource implements LocalDataSource {
-  static const _key = 'favorite_pokemons';
+  static const favoriteKey = 'favorite_pokemons';
+  static const responseKey = 'response_pokemons';
 
   @override
   Future<List<Pokemon>> getFavoritePokemons() async {
     final prefs = await SharedPreferences.getInstance();
-    final favoritesJson = prefs.getStringList(_key) ?? [];
+    final favoritesJson = prefs.getStringList(favoriteKey) ?? [];
 
     return favoritesJson
         .map((json) => Pokemon.fromJson(jsonDecode(json)))
@@ -32,7 +35,7 @@ class SharedPreferencesDataSource implements LocalDataSource {
       favorites.add(pokemon);
       final favoritesJson =
           favorites.map((pokemon) => jsonEncode(pokemon.toJson())).toList();
-      prefs.setStringList(_key, favoritesJson);
+      prefs.setStringList(favoriteKey, favoritesJson);
     }
   }
 
@@ -43,7 +46,7 @@ class SharedPreferencesDataSource implements LocalDataSource {
     favorites.removeWhere((pokemon) => pokemon.id == pokemonId);
     final favoritesJson =
         favorites.map((pokemon) => jsonEncode(pokemon.toJson())).toList();
-    prefs.setStringList(_key, favoritesJson);
+    prefs.setStringList(favoriteKey, favoritesJson);
   }
 
   @override
@@ -52,5 +55,24 @@ class SharedPreferencesDataSource implements LocalDataSource {
     final pokemonIds = favorites.map((pokemon) => pokemon.id).toList();
 
     return pokemonIds.contains(pokemonId);
+  }
+
+  @override
+  Future<Map<String, dynamic>?> getResponse(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    final cachedData = prefs.getString(responseKey + key);
+
+    if (cachedData == null) {
+      return null;
+    } else {
+      return jsonDecode(cachedData);
+    }
+  }
+
+  @override
+  Future<void> saveResponse(Map<String, dynamic> json, String key) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    prefs.setString(responseKey + key, jsonEncode(json));
   }
 }

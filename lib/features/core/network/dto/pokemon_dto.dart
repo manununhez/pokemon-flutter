@@ -24,6 +24,16 @@ class PokemonDTO {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'sprites': sprites?.toJson(),
+      'stats': stats?.map((statEntry) => statEntry.toJson()).toList(),
+      'types': types?.map((typeEntry) => typeEntry.toJson()).toList(),
+    };
+  }
 }
 
 class SpritesEntry {
@@ -60,6 +70,20 @@ class SpritesEntry {
         frontShinyFemale: json['front_shiny_female'],
         other: SpritesOtherEntry.fromJson(json['other']));
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'back_default': backDefault,
+      'back_female': backFemale,
+      'back_shiny': backShiny,
+      'back_shiny_female': backShinyFemale,
+      'front_default': frontDefault,
+      'front_female': frontFemale,
+      'front_shiny': frontShiny,
+      'front_shiny_female': frontShinyFemale,
+      'other': other?.toJson(),
+    };
+  }
 }
 
 class SpritesOtherEntry {
@@ -68,7 +92,16 @@ class SpritesOtherEntry {
   SpritesOtherEntry({required this.home});
 
   factory SpritesOtherEntry.fromJson(Map<String, dynamic> json) {
-    return SpritesOtherEntry(home: SpriteHomeEntry.fromJson(json['home']));
+    return SpritesOtherEntry(
+      home:
+          json['home'] != null ? SpriteHomeEntry.fromJson(json['home']) : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'home': home?.toJson(),
+    };
   }
 }
 
@@ -78,7 +111,15 @@ class SpriteHomeEntry {
   SpriteHomeEntry({required this.frontDefault});
 
   factory SpriteHomeEntry.fromJson(Map<String, dynamic> json) {
-    return SpriteHomeEntry(frontDefault: json['front_default']);
+    return SpriteHomeEntry(
+      frontDefault: json['front_default'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'front_default': frontDefault,
+    };
   }
 }
 
@@ -100,6 +141,14 @@ class StatEntry {
       stat: Stat.fromJson(json['stat']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'base_stat': baseStat,
+      'effort': effort,
+      'stat': stat?.toJson(),
+    };
+  }
 }
 
 class Stat {
@@ -116,6 +165,13 @@ class Stat {
       name: json['name'],
       url: json['url'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'url': url,
+    };
   }
 }
 
@@ -134,6 +190,13 @@ class TypeEntry {
       type: Type.fromJson(json['type']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'slot': slot,
+      'type': type.toJson(),
+    };
+  }
 }
 
 class Type {
@@ -150,5 +213,12 @@ class Type {
       name: json['name'],
       url: json['url'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'url': url,
+    };
   }
 }

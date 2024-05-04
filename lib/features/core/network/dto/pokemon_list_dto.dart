@@ -6,10 +6,17 @@ class PokemonListDTO {
 
   PokemonListDTO({required this.nextOffset, required this.pokemonList});
 
-  factory PokemonListDTO.fromJson(Map<String, dynamic> json) {
+factory PokemonListDTO.fromJson(Map<String, dynamic> json) {
     return PokemonListDTO(
-        nextOffset: json['nextOffset'],
-        pokemonList: List<PokemonDTO>.from(
-            json['name'].map((x) => PokemonDTO.fromJson(x))));
+      nextOffset: json['next'] as String?,
+      pokemonList: (json['results'] as List<dynamic>).map((e) => PokemonDTO.fromJson(e)).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'next': nextOffset,
+      'results': pokemonList.map((pokemonDTO) => pokemonDTO.toJson()).toList(),
+    };
   }
 }
