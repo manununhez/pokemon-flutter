@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/widgets/favorite_item.dart';
 import 'package:provider/provider.dart';
@@ -44,15 +45,11 @@ class FavoritesEmptyList extends StatelessWidget {
         const SizedBox(height: 36),
         Image.asset('assets/images/empty_favorites.png', height: 250),
         const SizedBox(height: 16),
-        Text("No hay favoritos! Ve a atraparlos",
-            style: GoogleFonts.lato(
-                fontSize: 16,
-                fontWeight: FontWeight.w900,
-                textStyle: const TextStyle(color: Color(0xFF383838)))),
+        Text("No hay favoritos! Ve a atraparlos", style: ThemeText.textAppBarGray),
         const SizedBox(height: 36),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF383838),
+              backgroundColor: ColorPalette.darkGray,
               foregroundColor: Colors.white,
               textStyle: const TextStyle(),
               padding: const EdgeInsets.symmetric(horizontal: 16),

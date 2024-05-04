@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_stats.dart';
@@ -64,16 +65,12 @@ class PokemonInfoCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: const Color(0xFFA3A3A3))),
+                        border: Border.all(color: ColorPalette.lightGray)),
                     child: Align(
                       alignment: const AlignmentDirectional(0, 0),
                       child: Text(
                           'Type: ${pokemon.type.type.name.capitalize()}',
-                          style: GoogleFonts.lato(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w900,
-                              textStyle:
-                                  const TextStyle(color: Color(0xFFA3A3A3)))),
+                          style: ThemeText.textStatsValue),
                     ),
                   )),
                 ]),
@@ -111,9 +108,8 @@ class ChoosePokemonButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          backgroundColor: isFavorite
-              ? pokemon.type.backgroundColor
-              : const Color(0xFF383838),
+          backgroundColor:
+              isFavorite ? pokemon.type.backgroundColor : ColorPalette.darkGray,
           foregroundColor: Colors.white,
           textStyle: const TextStyle(),
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -122,10 +118,7 @@ class ChoosePokemonButton extends StatelessWidget {
           )),
       onPressed: onPressed,
       child: Text(isFavorite ? messageIsFavorite : messageIsNotFavorite,
-          style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w900,
-              textStyle: const TextStyle(color: Colors.white))),
+          style: ThemeText.favoriteText),
     );
   }
 }

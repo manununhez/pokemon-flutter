@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
 
 class FavoriteAppBar extends StatelessWidget implements PreferredSizeWidget {
   const FavoriteAppBar({
@@ -14,10 +14,7 @@ class FavoriteAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           padding: const EdgeInsets.only(right: 40.0),
           child: Text('Mis favoritos',
-              style: GoogleFonts.lato(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  textStyle: const TextStyle(color: Color(0xFF383838)))),
+              style: ThemeText.textAppBarGray),
         ),
       ],
     );

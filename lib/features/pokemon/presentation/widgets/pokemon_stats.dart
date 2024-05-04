@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
 
 class PokemonInfoStats extends StatelessWidget {
   const PokemonInfoStats(
@@ -24,14 +25,10 @@ class PokemonInfoStats extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: const Color(0xFFA3A3A3))),
+                border: Border.all(color: ColorPalette.lightGray)),
             child: Align(
               alignment: const AlignmentDirectional(0, 0),
-              child: Text(statValue,
-                  style: GoogleFonts.lato(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w900,
-                      textStyle: const TextStyle(color: Color(0xFFA3A3A3)))),
+              child: Text(statValue, style: ThemeText.textStatsValue),
             ),
           ),
         ),
@@ -46,11 +43,7 @@ class PokemonInfoStats extends StatelessWidget {
             ),
             child: Align(
               alignment: const AlignmentDirectional(0, 0),
-              child: Text(statName,
-                  style: GoogleFonts.lato(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w900,
-                      textStyle: const TextStyle(color: Colors.white))),
+              child: Text(statName, style: ThemeText.favoriteText),
             ),
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +30,7 @@ class FavoritesItem extends StatelessWidget {
                 child: Image.network(pokemon.image, width: 76, height: 76)),
             Expanded(
               child: Text(pokemon.name.capitalize(),
-                  style: GoogleFonts.lato(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      textStyle: const TextStyle(color: Colors.white))),
+                  style: ThemeText.cardItemTitle),
             ),
             IconButton(
                 onPressed: () {
