@@ -45,7 +45,8 @@ class FavoritesEmptyList extends StatelessWidget {
         const SizedBox(height: 36),
         Image.asset('assets/images/empty_favorites.png', height: 250),
         const SizedBox(height: 16),
-        Text("No hay favoritos! Ve a atraparlos", style: ThemeText.textAppBarGray),
+        Text("No hay favoritos! Ve a atraparlos",
+            style: ThemeText.textAppBarGray),
         const SizedBox(height: 36),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -59,7 +60,7 @@ class FavoritesEmptyList extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Go back!'),
+          child: Text('Volver atrás!', style: ThemeText.favoriteText),
         )
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_flutter/features/core/resources/colors.dart';
 
 class Pokemon {
   String id;
@@ -81,10 +82,7 @@ class PokemonType {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'backgroundColor': PokemonTypeMapper.getColorType(backgroundColor),
-      'type': PokemonTypeMapper.toStringValue(type)
-    };
+    return {'type': PokemonTypeMapper.toStringValue(type)};
   }
 }
 
@@ -137,25 +135,25 @@ class PokemonTypeMapper {
 
   static const Map<PType, Color> _typeToColor = {
     PType.normal: Colors.brown,
-    PType.fighting: Color.fromARGB(255, 215, 58, 47),
-    PType.flying: Color.fromARGB(255, 46, 110, 163),
+    PType.fighting: ColorPalette.fightingType,
+    PType.flying: ColorPalette.flyingType,
     PType.poison: Colors.purple,
-    PType.ground: Color.fromARGB(255, 196, 117, 0),
-    PType.rock: Color.fromARGB(255, 121, 120, 120),
-    PType.bug: Color.fromARGB(255, 67, 163, 71),
+    PType.ground: ColorPalette.groundType,
+    PType.rock: ColorPalette.rockType,
+    PType.bug: ColorPalette.bugType,
     PType.ghost: Colors.indigo,
     PType.steel: Colors.blueGrey,
-    PType.fire: Color.fromARGB(255, 212, 103, 2),
-    PType.water: Color.fromARGB(255, 30, 132, 216),
-    PType.grass: Color.fromARGB(255, 70, 162, 73),
-    PType.electric: Color.fromARGB(255, 155, 139, 0),
+    PType.fire: ColorPalette.fireType,
+    PType.water: ColorPalette.waterType,
+    PType.grass: ColorPalette.grassType,
+    PType.electric: ColorPalette.electricType,
     PType.psychic: Colors.pink,
     PType.ice: Colors.lightBlue,
     PType.dragon: Colors.deepPurple,
     PType.dark: Colors.black,
-    PType.fairy: Color.fromARGB(255, 249, 60, 123),
-    PType.unknown: Color.fromARGB(255, 93, 93, 93),
-    PType.shadow: Color.fromARGB(221, 39, 39, 39),
+    PType.fairy: ColorPalette.fairyType,
+    PType.unknown: ColorPalette.unknownType,
+    PType.shadow: ColorPalette.shadowType,
   };
 
   static const Map<PType, String> _typeToString = {

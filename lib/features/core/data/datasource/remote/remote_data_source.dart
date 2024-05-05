@@ -4,6 +4,7 @@ import 'package:pokemon_flutter/features/core/network/dto/pokemon_list_dto.dart'
 import 'package:pokemon_flutter/features/core/network/dto/pokemon_metadata_dto.dart';
 import 'package:pokemon_flutter/features/core/network/api.dart';
 import 'package:pokemon_flutter/features/core/network/dto/pokemon_dto.dart';
+import 'package:pokemon_flutter/features/core/network/exception.dart';
 
 abstract class RemoteDataSource {
   Future<PokemonDTO> getPokemonInfo(String pokemonId);
@@ -11,43 +12,47 @@ abstract class RemoteDataSource {
 }
 
 class HttpRemoteDataSource implements RemoteDataSource {
-  final String paginationLimit = '10';
+  final http.Client client;
+  final String paginationLimit = '20';
+
+  HttpRemoteDataSource({required this.client});
 
   @override
   Future<PokemonDTO> getPokemonInfo(String pokemonId) async {
-    final response = await http.get(Uri.parse(Api.getPokemonInfo(pokemonId)));
-    if (response.statusCode == 200) {
-      final pokemonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+    final response = await client.get(Uri.parse(Api.getPokemonInfo(pokemonId)));
 
-      return PokemonDTO.fromJson(pokemonResponse);
-    } else {
-      throw Exception('Failed to load data');
+    if (response.statusCode != 200) {
+      throw PokemonInfoRequestFailure();
     }
+
+    final pokemonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+
+    return PokemonDTO.fromJson(pokemonResponse);
   }
 
   @override
   Future<PokemonListDTO> getPokemonList(String offset) async {
-    final response = await http
+    final response = await client
         .get(Uri.parse(Api.getPokemonMetada(offset, paginationLimit)));
-    if (response.statusCode == 200) {
-      final pokemonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
-      var metadada = PokemonMetadataDTO.fromJson(pokemonResponse);
+    if (response.statusCode != 200) {
+      throw PokemonMetadataRequestFailure();
+    }
 
-      if (metadada.results != null) {
-        var pokemonList = await getPokemonInfoList(metadada.results!);
-        return PokemonListDTO(
-            pokemonList: pokemonList,
-            nextOffset: extractOffset(metadada.next ?? ''));
-      } else {
-        return PokemonListDTO(pokemonList: [], nextOffset: null);
-      }
+    final pokemonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+    final metadada = PokemonMetadataDTO.fromJson(pokemonResponse);
+
+    if (metadada.results != null) {
+      var pokemonList = await _getPokemonInfoList(metadada.results!);
+      return PokemonListDTO(
+          pokemonList: pokemonList,
+          nextOffset: extractOffset(metadada.next ?? ''));
     } else {
-      throw Exception('Failed to load data');
+      return PokemonListDTO(pokemonList: [], nextOffset: null);
     }
   }
 
-  Future<List<PokemonDTO>> getPokemonInfoList(
+  Future<List<PokemonDTO>> _getPokemonInfoList(
       List<PokemonResult> pokemonResult) async {
     List<PokemonDTO> pokemonList = [];
     for (var result in pokemonResult) {

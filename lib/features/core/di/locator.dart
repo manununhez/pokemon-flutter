@@ -11,13 +11,14 @@ import 'package:pokemon_flutter/features/pokemon/domain/repository/pokemon_repos
 import 'package:pokemon_flutter/features/favorites/domain/usecase/add_favorite_usecase.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/get_pokemon_usecase.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
+import 'package:http/http.dart' as http;
 
 var locator = GetIt.instance;
 
 void setupLocator() {
-  locator.registerSingleton<RemoteDataSource>(HttpRemoteDataSource());
-  locator.registerSingleton<LocalDataSource>(
-      SharedPreferencesDataSource());
+  locator.registerSingleton<RemoteDataSource>(
+      HttpRemoteDataSource(client: http.Client()));
+  locator.registerSingleton<LocalDataSource>(SharedPreferencesDataSource());
   locator.registerSingleton<PokemonRepository>(PokemonRepositoryImpl());
   locator.registerSingleton<FavoriteRepository>(FavoriteRepositoryImpl());
   locator.registerFactory(() => PokemonModel());

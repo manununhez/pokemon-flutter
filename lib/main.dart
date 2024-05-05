@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pokemon_flutter/features/favorites/presentation/favorites_screen.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/home_screen.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
@@ -30,9 +31,13 @@ class MyApp extends StatelessWidget {
           create: (_) => FavoriteModel()..getFavorites(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/favorites': (context) => const FavoritesScreen(),
+        },
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
       ),
     );
   }

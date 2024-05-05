@@ -14,7 +14,11 @@ class PokemonList {
   }
 
   Map<String, dynamic> toJson() {
-    return {'pokemonList': pokemonList, 'nextOffset': nextOffset};
+    return {
+      'pokemonList':
+          pokemonList.map((pokemonDTO) => pokemonDTO.toJson()).toList(),
+      'nextOffset': nextOffset
+    };
   }
 
   static PokemonList empty() {

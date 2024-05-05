@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
 import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
-import 'package:pokemon_flutter/features/favorites/presentation/favorites_screen.dart';
 
 class PokemonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PokemonAppBar({
@@ -18,10 +17,7 @@ class PokemonAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: <Widget>[
           GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const FavoritesScreen()));
+                Navigator.pushNamed(context, '/favorites');
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
