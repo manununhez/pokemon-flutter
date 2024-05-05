@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:pokemon_flutter/features/core/data/datasource/local/local_data_source.dart';
-import 'package:pokemon_flutter/features/core/data/datasource/remote/remote_data_source.dart';
-import 'package:pokemon_flutter/features/core/data/repository/favorite_repository_impl.dart';
-import 'package:pokemon_flutter/features/core/data/repository/pokemon_repository_impl.dart';
+import 'package:pokemon_flutter/core/data/datasource/local/local_data_source.dart';
+import 'package:pokemon_flutter/core/data/datasource/remote/remote_data_source.dart';
+import 'package:pokemon_flutter/core/data/repository/favorite_repository_impl.dart';
+import 'package:pokemon_flutter/core/data/repository/pokemon_repository_impl.dart';
 import 'package:pokemon_flutter/features/favorites/domain/repository/favorite_repository.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/get_favorites_usecase.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/remove_favorite_usecase.dart';

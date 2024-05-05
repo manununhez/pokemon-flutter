@@ -1,7 +1,7 @@
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_dto.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_list_dto.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/domain/pokemon_list.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_dto.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_list_dto.dart';
 
 extension PokemonDTOExtension on PokemonDTO {
   Pokemon toPokemon() {

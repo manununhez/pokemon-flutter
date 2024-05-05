@@ -1,4 +1,4 @@
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
 
 class PokemonList {
   List<Pokemon> pokemonList;

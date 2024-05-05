@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/core/resources/colors.dart';
 
 class Pokemon {
   String id;

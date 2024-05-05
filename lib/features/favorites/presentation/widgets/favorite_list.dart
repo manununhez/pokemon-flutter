@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/resources/colors.dart';
-import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
+import 'package:pokemon_flutter/core/resources/colors.dart';
+import 'package:pokemon_flutter/core/resources/theme_text.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/favorites/presentation/widgets/favorite_item.dart';
 import 'package:provider/provider.dart';

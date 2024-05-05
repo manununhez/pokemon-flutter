@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/resources/theme_text.dart';
 
 class PokemonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PokemonAppBar({

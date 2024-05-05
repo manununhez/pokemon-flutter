@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/core/resources/colors.dart';
 
 abstract class ThemeText {
   static TextStyle textAppBarGray = GoogleFonts.lato(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info_card.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info_header.dart';
 

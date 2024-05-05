@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
-import 'package:pokemon_flutter/features/core/resources/colors.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/domain/pokemon_list.dart';
+import 'package:pokemon_flutter/core/resources/colors.dart';
 
 void main() {
   group('PokemonList toJson and fromJson', () {

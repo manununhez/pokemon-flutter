@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
+import 'package:pokemon_flutter/core/resources/theme_text.dart';
 
 class FavoriteAppBar extends StatelessWidget implements PreferredSizeWidget {
   const FavoriteAppBar({

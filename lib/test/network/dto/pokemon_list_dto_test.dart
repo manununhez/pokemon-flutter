@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_dto.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_list_dto.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_dto.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_list_dto.dart';
 
 void main() {
   group('PokemonListDTO', () {

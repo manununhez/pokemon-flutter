@@ -4,7 +4,7 @@ import 'package:pokemon_flutter/features/favorites/presentation/favorites_screen
 import 'package:pokemon_flutter/features/favorites/presentation/model/favorite_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/home_screen.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
-import 'package:pokemon_flutter/features/core/di/locator.dart';
+import 'package:pokemon_flutter/core/di/locator.dart';
 import 'package:provider/provider.dart';
 
 void main() {

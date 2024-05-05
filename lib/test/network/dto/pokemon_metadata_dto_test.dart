@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_metadata_dto.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_metadata_dto.dart';
 
 void main() {
   group('PokemonMetadataDTO', () {

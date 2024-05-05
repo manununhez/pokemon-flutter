@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_list_dto.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_metadata_dto.dart';
-import 'package:pokemon_flutter/features/core/network/api.dart';
-import 'package:pokemon_flutter/features/core/network/dto/pokemon_dto.dart';
-import 'package:pokemon_flutter/features/core/network/exception.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_list_dto.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_metadata_dto.dart';
+import 'package:pokemon_flutter/core/network/api.dart';
+import 'package:pokemon_flutter/core/network/dto/pokemon_dto.dart';
+import 'package:pokemon_flutter/core/network/exception.dart';
 
 abstract class RemoteDataSource {
   Future<PokemonDTO> getPokemonInfo(String pokemonId);

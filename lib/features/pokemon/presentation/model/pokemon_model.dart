@@ -1,7 +1,7 @@
-import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
+import 'package:pokemon_flutter/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/usecases/get_pokemon_usecase.dart';
-import 'package:pokemon_flutter/features/core/presentation/base_model.dart';
-import 'package:pokemon_flutter/features/core/di/locator.dart';
+import 'package:pokemon_flutter/core/presentation/base_model.dart';
+import 'package:pokemon_flutter/core/di/locator.dart';
 
 class PokemonModel extends BaseModel {
   GetPokemonUseCase getPokemonUseCase = locator<GetPokemonUseCase>();

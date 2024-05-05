@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
-import 'package:pokemon_flutter/features/core/presentation/base_model.dart';
-import 'package:pokemon_flutter/features/core/presentation/widgets/loading.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/presentation/base_model.dart';
+import 'package:pokemon_flutter/core/presentation/widgets/loading.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/model/pokemon_model.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_bar.dart';
 import 'package:pokemon_flutter/features/pokemon/presentation/widgets/pokemon_info.dart';

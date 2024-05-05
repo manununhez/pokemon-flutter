@@ -1,9 +1,9 @@
-import 'package:pokemon_flutter/features/core/domain/pokemon.dart';
+import 'package:pokemon_flutter/core/domain/pokemon.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/add_favorite_usecase.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/get_favorites_usecase.dart';
 import 'package:pokemon_flutter/features/favorites/domain/usecase/remove_favorite_usecase.dart';
-import 'package:pokemon_flutter/features/core/presentation/base_model.dart';
-import 'package:pokemon_flutter/features/core/di/locator.dart';
+import 'package:pokemon_flutter/core/presentation/base_model.dart';
+import 'package:pokemon_flutter/core/di/locator.dart';
 
 class FavoriteModel extends BaseModel {
   GetFavoritesUseCase getFavoriteUseCase = locator<GetFavoritesUseCase>();

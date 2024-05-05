@@ -1,6 +1,6 @@
-import 'package:pokemon_flutter/features/core/domain/pokemon_list.dart';
+import 'package:pokemon_flutter/core/domain/pokemon_list.dart';
 import 'package:pokemon_flutter/features/pokemon/domain/repository/pokemon_repository.dart';
-import 'package:pokemon_flutter/features/core/di/locator.dart';
+import 'package:pokemon_flutter/core/di/locator.dart';
 
 class GetPokemonUseCase {
   PokemonRepository repository = locator<PokemonRepository>();

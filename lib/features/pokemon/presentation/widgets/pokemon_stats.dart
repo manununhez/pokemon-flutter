@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_flutter/features/core/resources/colors.dart';
-import 'package:pokemon_flutter/features/core/resources/theme_text.dart';
+import 'package:pokemon_flutter/core/resources/colors.dart';
+import 'package:pokemon_flutter/core/resources/theme_text.dart';
 
 class PokemonInfoStats extends StatelessWidget {
   const PokemonInfoStats(
